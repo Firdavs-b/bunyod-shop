@@ -1,0 +1,44 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="mb-4">🛒 Савати шумо</h2>
+
+{% if cart_items %}
+<table class="table table-hover align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>Маҳсулот</th>
+      <th>Нарх</th>
+      <th>Миқдор</th>
+      <th>Ҳамагӣ</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart_items %}
+    <tr>
+      <td class="d-flex align-items-center gap-3">
+        {% if item.product.image %}
+          <img src="{{ item.product.image.url }}" width="60" class="rounded" alt="{{ item.product.name }}">
+        {% else %}
+          <img src="{% static 'img/products/product1.jpg' %}" width="60" class="rounded" alt="{{ item.product.name }}">
+        {% endif %}
+        <div>{{ item.product.name }}</div>
+      </td>
+      <td>💰 {{ item.product.sell_price }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>💰 {{ item.total_price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="text-end">
+  <h4>Ҳамагӣ: <span class="text-warning">{{ total }}</span> сомонӣ</h4>
+  <a href="{% url 'checkout' %}" class="btn btn-primary mt-3">💳 Пардохт</a>
+</div>
+
+{% else %}
+  <p class="text-muted">Сават холӣ аст.</p>
+{% endif %}
+{% endblock %}

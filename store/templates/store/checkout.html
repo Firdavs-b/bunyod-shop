@@ -1,0 +1,84 @@
+{% extends 'store/base.html' %}
+{% load static %} 
+{% block content %}
+<div class="container py-4">
+  <div class="card shadow-lg border-0 p-4" style="border-radius: 20px;">
+    <h3 class="text-center mb-4 text-success fw-bold">
+      💳 Тасдиқи заказ
+    </h3>
+
+    {% if cart_items %}
+    <div class="table-responsive mb-4">
+      <table class="table align-middle">
+        <thead class="table-success text-center">
+          <tr>
+            <th>Маҳсулот</th>
+            <th>Нарх</th>
+            <th>Миқдор</th>
+            <th>Ҳамагӣ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <img src="{{ item.product.image }}" alt="{{ item.product.name }}"
+                     class="rounded me-2" width="60" height="60">
+                <span class="fw-semibold">{{ item.product.name }}</span>
+              </div>
+            </td>
+            <td class="text-center text-muted">{{ item.product.sell_price }} сомонӣ</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td class="text-center fw-bold text-success">{{ item.total_price }} сомонӣ</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-end mb-4">
+      <h4 class="fw-bold">Ҳамагӣ: <span class="text-success">{{ total }} сомонӣ</span></h4>
+    </div>
+
+    <form method="post" class="mt-3">
+      {% csrf_token %}
+      <div class="row g-3">
+        <h5 class="fw-semibold text-primary mb-2">🧍 Маълумоти муштарӣ</h5>
+        <div class="col-md-6">
+          <input type="text" name="first_name" class="form-control form-control-lg" placeholder="Ном" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="last_name" class="form-control form-control-lg" placeholder="Насаб" required>
+        </div>
+        <div class="col-md-6">
+          <input type="tel" name="phone" class="form-control form-control-lg" placeholder="+992 ..." required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="address" class="form-control form-control-lg" placeholder="Суроға" required>
+        </div>
+        <div class="col-md-12">
+          <select name="payment_method" class="form-select form-select-lg" required>
+            <option value="">Усули пардохтро интихоб кунед</option>
+            <option value="cash">💵 Нақд</option>
+            <option value="card">💳 Корти бонкӣ</option>
+            <option value="transfer">📱 Пулгузаронӣ (QR/аппа)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        <button type="submit" class="btn btn-success btn-lg w-100 py-3 fw-semibold" style="border-radius: 15px;">
+          ✅ Фиристодани заказ
+        </button>
+      </div>
+    </form>
+
+    {% else %}
+    <div class="alert alert-warning text-center mt-3" style="border-radius: 15px;">
+      🛒 Сават холӣ аст. Лутфан аввал маҳсулотро илова кунед.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
