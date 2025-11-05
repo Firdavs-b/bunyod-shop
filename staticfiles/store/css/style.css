@@ -1,0 +1,79 @@
+/* 🔹 Услуби умумӣ */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 🔹 Карточкаи маҳсулот */
+.product-card {
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Расми маҳсулот */
+.product-img {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* 🔹 Тугмаи заказ */
+.btn-primary {
+  background-color: #0077ff;
+  border-color: #0077ff;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056d4;
+  border-color: #0056d4;
+}
+
+/* 🔹 Қисми чап — категорияҳо */
+.card {
+  border-radius: 12px;
+}
+
+.list-group-item.active {
+  background-color: #0077ff;
+  border-color: #0077ff;
+}
+
+/* 🔹 Сарлавҳаҳо */
+h3, h5 {
+  font-weight: 600;
+}
+
+/* 🔹 Тавсифи маҳсулот */
+.card-text {
+  font-size: 0.9rem;
+}
+
+/* ✅ Паёми муваққатии “ба сабад илова шуд” */
+.toast-message {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.toast-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
